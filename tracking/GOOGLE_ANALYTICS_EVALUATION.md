@@ -181,19 +181,9 @@ Dashboard-Ready Marts (nastahem_marts)
 
 ---
 
-## 🔍 Nuvarande Problem i Flocken Setup
+## 🔍 Vanliga Problem och Lösningar
 
 ### **Problem 1: gtag.js direkt istället för GTM**
-
-**Nuvarande kod:**
-```tsx
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17821309500"></script>
-<script>
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'AW-17821309500');
-</script>
-```
 
 **Problem:**
 - Kan orsaka konflikter med GTM
@@ -204,21 +194,13 @@ Dashboard-Ready Marts (nastahem_marts)
 - Ersätt med GTM Web Container
 - Hantera Google Ads via GTM istället
 
-### **Problem 2: Ingen GA4 ännu**
-
-**Nuvarande status:**
-- Ingen GA4 property för Flocken
-- Ingen GA4 tracking
+### **Problem 2: Ingen GA4**
 
 **Lösning:**
-- Skapa GA4 Property för Flocken
+- Skapa GA4 Property för projektet
 - Konfigurera GTM → GA4 tracking
 
 ### **Problem 3: Ingen server-side tracking**
-
-**Nuvarande status:**
-- Endast client-side tracking
-- Ingen server-side validering
 
 **Lösning:**
 - Sätt upp GTM Server Container
@@ -228,7 +210,7 @@ Dashboard-Ready Marts (nastahem_marts)
 
 ## ✅ Slutsats
 
-**Nästa Hems setup är mycket bra och bör replikeras för Flocken:**
+**Denna setup är rekommenderad för alla Spitakolus-projekt:**
 
 1. **✅ Professionell arkitektur** - Enterprise-grade tracking
 2. **✅ Server-side tracking** - Bättre data quality och privacy
@@ -236,21 +218,25 @@ Dashboard-Ready Marts (nastahem_marts)
 4. **✅ Cookie consent** - GDPR-compliant
 5. **✅ Skalbar** - Redo för framtida app integration
 
-**Rekommendation:** Implementera samma setup för Flocken med:
-- Separata GA4 Property
+**Rekommendation:** Implementera samma setup för alla projekt med:
+- Separata GA4 Properties
 - Separata BigQuery datasets
-- GTM routing (eller separat container)
+- GTM routing via shared container
 - Samma server-side setup
 
 ---
 
-## 📚 Referenser
+## 📚 Relaterad dokumentation
 
-- [Nästa Hems Complete Tracking Guide](../nastahem/docs/project-guides/shared/COMPLETE_DATA_TRACKING_GUIDE.md)
-- [Flocken Tracking Implementation Plan](../nastahem/docs/project-guides/flocken/README_FLOCKEN_TRACKING.md)
-- [GTM Analytics Master Guide](../nastahem/docs/project-guides/gtm-analytics/README_GTM_ANALYTICS.md)
+- [GTM Shared Container](./GTM_SHARED_CONTAINER.md) - GTM container setup
+- [BigQuery Shared Project](./BIGQUERY_SHARED_PROJECT.md) - BigQuery projekt setup
+- [GA4 Property Structure](./GA4_PROPERTY_STRUCTURE.md) - GA4 best practices
+
+**Projekt-specifik dokumentation:**
+- [flocken-website/docs/tracking/](https://github.com/tbinho/flocken-website/tree/main/docs/tracking)
+- [nastahem/docs/tracking/](https://github.com/tbinho/nastahem/tree/main/docs/tracking)
 
 ---
 
-**Nästa steg:** Börja med Fas 1 - GTM & GA4 Setup
+**Nästa steg:** Se [GTM Shared Container](./GTM_SHARED_CONTAINER.md) för att lägga till nytt projekt
 

@@ -1,121 +1,112 @@
-# Spitakolus - Företagsgemensam Dokumentation
+# Spitakolus - Delad Företagsdokumentation
 
-**⚠️ VIKTIGT:** Detta är **FÖRETAGSGEMENSAM** dokumentation för Spitakolus AB.  
-Detta repo innehåller delad dokumentation som används av flera projekt.
-
-**För projekt-specifik dokumentation, se:**
-- [flocken-website](https://github.com/tbinho/flocken-website) - Flocken projekt
-- [nastahem](https://github.com/tbinho/nastahem) - Nästa Hem projekt
+**⚠️ VIKTIGT:** Detta är **SPITAKOLUS** repo - delad dokumentation för alla produkter.  
+Detta repo innehåller INTE produktkod - varje produkt har sitt eget repo.
 
 ---
 
-## 🎯 Vad finns här?
+## 🏢 Spitakolus-produkter
 
-Detta repo innehåller **delad dokumentation** som används av flera projekt:
-
-- **Delad tracking-infrastruktur** (GTM Shared Container, BigQuery projekt)
-- **Delade Meta Ads standarder** (naming conventions, workflows)
-- **Företagsövergripande processer** (Git workflows, deployment-standarder)
-- **Regler för dokumentation** (hur man dokumenterar, uppdaterar, indexerar)
-- **Mallar för nya repos** (templates för att säkerställa konsistent struktur)
+| Produkt | Beskrivning | Repo | URL |
+|---------|-------------|------|-----|
+| **🏠 Nästa Hem** | AI-driven fastighetsmäklarplattform | [nastahem](https://github.com/tbinho/nastahem) | nastahem.com |
+| **🐕 Flocken** | Hundägare community & app | [flocken-website](https://github.com/tbinho/flocken-website) | flocken.info |
 
 ---
 
-## 📁 Struktur
+## 📁 Vad finns här?
+
+### Delad infrastruktur och standarder
 
 ```
 spitakolus/
-├── README.md                          # Denna fil
-├── DOCUMENTATION_RULES.md             # Regler för dokumentation
+├── tracking/                     # Delad tracking-infrastruktur
+│   ├── GTM_SHARED_CONTAINER.md   # GTM container (GTM-PD5N4GT3)
+│   ├── BIGQUERY_SHARED_PROJECT.md # BigQuery (nastahem-tracking)
+│   ├── GOOGLE_ANALYTICS_EVALUATION.md
+│   └── GA4_PROPERTY_STRUCTURE.md
 │
-├── tracking/                          # Delad tracking-infrastruktur
-│   ├── README.md                     # Index för tracking-dokumentation
-│   ├── GTM_SHARED_CONTAINER.md       # GTM container som delas
-│   ├── BIGQUERY_SHARED_PROJECT.md    # BigQuery projekt-struktur
-│   └── SHARED_EVENTS_CONVENTIONS.md  # Event naming som delas
+├── meta-ads/                     # Delade Meta Ads standarder
+│   ├── NAMING_CONVENTIONS.md     # Naming conventions (cid, etc.)
+│   └── CREATIVE_WORKFLOW.md      # Creative Bases workflow
 │
-├── meta-ads/                         # Delade Meta Ads standarder
-│   ├── README.md                     # Index för Meta Ads-dokumentation
-│   ├── NAMING_CONVENTIONS.md         # Naming conventions (fungerar över flera konton)
-│   ├── CREATIVE_WORKFLOW.md          # Creative workflow (delas mellan projekt)
-│   └── ACCOUNT_STRUCTURE.md          # Hur konton ska struktureras
+├── development/                  # Delade utvecklingsstandarder
+│   ├── TEMPLATES/                # Mallar för nya produkter
+│   │   ├── README_TEMPLATE.md
+│   │   └── DOCUMENTATION_MAP_TEMPLATE.md
+│   └── GIT_WORKFLOW.md
 │
-├── development/                       # Företagsövergripande utveckling
-│   ├── README.md                     # Index för development-dokumentation
-│   ├── GIT_WORKFLOW.md               # Företagsövergripande Git-standarder
-│   ├── DEPLOYMENT_STANDARDS.md       # Deployment-standarder
-│   └── TEMPLATES/                    # Mallar för nya repos
-│       ├── README_TEMPLATE.md
-│       └── DOCUMENTATION_MAP_TEMPLATE.md
+├── company/                      # Företagsinformation
+│   ├── COMPANY_INFO.md
+│   └── CONTACT.md
 │
-└── company/                          # Företagsinformation
-    ├── README.md
-    ├── COMPANY_INFO.md               # Spitakolus AB info
-    └── CONTACT.md                    # Kontaktinformation
+├── DOCUMENTATION_RULES.md        # Regler för dokumentation
+└── PRODUCT_SEPARATION_GUIDE.md   # Guide för multi-repo struktur
 ```
 
 ---
 
-## 🚀 Start här
+## 🎯 Användning
 
-### För att förstå delad infrastruktur:
-1. **[tracking/README.md](./tracking/README.md)** - Delad tracking-infrastruktur
-2. **[meta-ads/README.md](./meta-ads/README.md)** - Delade Meta Ads standarder
-3. **[development/README.md](./development/README.md)** - Företagsövergripande processer
+### För tracking och analytics
+1. Varje produkt har sin egen GA4 property
+2. Alla produkter delar GTM container (GTM-PD5N4GT3) med hostname-routing
+3. Alla produkter delar BigQuery projekt (nastahem-tracking) med separata datasets
 
-### För att skapa nya repos:
-1. **[DOCUMENTATION_RULES.md](./DOCUMENTATION_RULES.md)** - Regler för dokumentation
-2. **[development/TEMPLATES/](./development/TEMPLATES/)** - Mallar för nya repos
+**Se:** [tracking/GTM_SHARED_CONTAINER.md](./tracking/GTM_SHARED_CONTAINER.md)
 
----
+### För Meta Ads
+1. Varje produkt har sina egna kampanjer
+2. Alla produkter följer samma naming conventions
+3. Creative workflow är delad
 
-## 📋 Viktiga principer
+**Se:** [meta-ads/NAMING_CONVENTIONS.md](./meta-ads/NAMING_CONVENTIONS.md)
 
-### Delad dokumentation vs Projekt-specifik
+### För ny produkt
+1. Skapa nytt repo för produkten
+2. Använd mallar från `development/TEMPLATES/`
+3. Lägg till hostname routing i GTM
+4. Skapa BigQuery datasets
 
-**Delad dokumentation (här i spitakolus):**
-- ✅ Används av flera projekt
-- ✅ Företagsövergripande standarder
-- ✅ Delad infrastruktur (GTM, BigQuery)
-- ✅ Processer som delas mellan projekt
-
-**Projekt-specifik dokumentation (i projekt-repos):**
-- ✅ Specifik för ett projekt
-- ✅ Projekt-specifik deployment
-- ✅ Projekt-specifika workflows
-- ✅ Projekt-specifika kampanjer
-
-### När ska dokumentation vara här?
-
-**Placera dokumentation här om:**
-- Det gäller flera projekt (t.ex. GTM Shared Container)
-- Det är företagsövergripande standarder
-- Det är processer som används i flera projekt
-- Det är infrastruktur som delas (t.ex. BigQuery projekt)
-
-**Placera dokumentation i projekt-repo om:**
-- Det är specifikt för ett projekt
-- Det är deployment-instruktioner för ett specifikt repo
-- Det är projekt-specifika workflows
-- Det är projekt-specifika kampanjer eller kreativt arbete
+**Se:** [PRODUCT_SEPARATION_GUIDE.md](./PRODUCT_SEPARATION_GUIDE.md)
 
 ---
 
-## 🔗 Länkar till projekt-repos
+## ⚠️ AI-varningar
 
-- **[flocken-website](https://github.com/tbinho/flocken-website)** - Flocken projekt
-- **[nastahem](https://github.com/tbinho/nastahem)** - Nästa Hem projekt
+### ❌ UNDVIK FÖRVIRRING
+
+**Detta repo (spitakolus) innehåller:**
+- Delad dokumentation
+- Standarder och mallar
+- Infrastruktur-dokumentation
+
+**Detta repo innehåller INTE:**
+- Produktkod
+- Produktspecifik dokumentation
+- Assets eller bilder
+
+### 🔗 Rätt repo för rätt uppgift
+
+| Uppgift | Repo |
+|---------|------|
+| Arbeta med Nästa Hem webbplats | [nastahem](https://github.com/tbinho/nastahem) |
+| Arbeta med Flocken webbplats | [flocken-website](https://github.com/tbinho/flocken-website) |
+| Läsa/uppdatera delade standarder | **spitakolus** (detta repo) |
 
 ---
 
-## 📖 Regler för dokumentation
+## 📊 Delad infrastruktur
 
-Se [DOCUMENTATION_RULES.md](./DOCUMENTATION_RULES.md) för:
-- Hur man dokumenterar
-- När man uppdaterar
-- Hur man indexerar
-- Var man lägger ny dokumentation
-- Mallar för nya repos
+### GTM Shared Container
+- **Web Container:** GTM-PD5N4GT3
+- **Server Container:** GTM-THB49L3K @ gtm.nastahem.com
+- **Routing:** Hostname-based (nastahem.com, flocken.info)
+
+### BigQuery Shared Project
+- **Project:** nastahem-tracking
+- **Nästa Hem datasets:** nastahem_raw, nastahem_curated, nastahem_marts
+- **Flocken datasets:** flocken_raw, flocken_curated, flocken_marts
 
 ---
 

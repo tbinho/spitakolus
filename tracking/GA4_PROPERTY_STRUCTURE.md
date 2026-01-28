@@ -12,11 +12,15 @@
 ### **Struktur:**
 
 ```
-GA4 Property: "Flocken" (EN property)
-├── Data Stream 1: Web (flocken.info)
+GA4 Property: "[Projektnamn]" (EN property per projekt)
+├── Data Stream 1: Web (projektets-domän.com)
 ├── Data Stream 2: Android App (Google Play)
 └── Data Stream 3: iOS App (App Store - framtida)
 ```
+
+**Exempel:**
+- Flocken: EN property med web + android + ios streams
+- Nästa Hem: EN property med web + android + ios streams
 
 ### **Varför EN property istället för tre separata?**
 
@@ -55,7 +59,7 @@ SELECT
   platform,  -- 'web', 'android', 'ios'
   COUNT(*) AS events,
   COUNT(DISTINCT user_pseudo_id) AS users
-FROM `flocken-tracking.flocken_curated.events`
+FROM `nastahem-tracking.[projekt]_curated.events`
 WHERE event_date >= DATE_SUB(CURRENT_DATE(), INTERVAL 30 DAY)
 GROUP BY event_name, platform
 ORDER BY events DESC;
@@ -64,30 +68,30 @@ ORDER BY events DESC;
 ### **BigQuery Dataset Structure:**
 
 ```
-flocken-tracking/
-├── flocken_raw/              # Raw GA4 export (alla streams)
-│   └── events_YYYYMMDD      # Innehåller web + android + ios
+nastahem-tracking/
+├── [projekt]_raw/              # Raw GA4 export (alla streams)
+│   └── events_YYYYMMDD         # Innehåller web + android + ios
 │
-├── flocken_curated/          # Processed events
-│   ├── events                # Alla events med platform field
-│   └── user_identity_map     # Cross-platform user stitching
+├── [projekt]_curated/          # Processed events
+│   ├── events                  # Alla events med platform field
+│   └── user_identity_map       # Cross-platform user stitching
 │
-└── flocken_marts/            # Business intelligence
-    ├── daily_performance     # Aggregerat per platform
-    ├── web_performance        # Endast web events
-    ├── app_performance        # Endast app events (android + ios)
-    └── cross_platform_journey # Web → App conversion flows
+└── [projekt]_marts/            # Business intelligence
+    ├── daily_performance       # Aggregerat per platform
+    ├── web_performance         # Endast web events
+    ├── app_performance         # Endast app events (android + ios)
+    └── cross_platform_journey  # Web → App conversion flows
 ```
 
 ### **Platform Separation i SQL:**
 
 ```sql
 -- Web-only metrics
-SELECT * FROM flocken_curated.events 
+SELECT * FROM `nastahem-tracking.[projekt]_curated.events` 
 WHERE platform = 'web';
 
 -- App-only metrics (Android + iOS)
-SELECT * FROM flocken_curated.events 
+SELECT * FROM `nastahem-tracking.[projekt]_curated.events` 
 WHERE platform IN ('android', 'ios');
 
 -- Cross-platform analysis
@@ -97,7 +101,7 @@ SELECT
   COUNTIF(platform = 'web') AS web_events,
   COUNTIF(platform = 'android') AS android_events,
   COUNTIF(platform = 'ios') AS ios_events
-FROM flocken_curated.events
+FROM `nastahem-tracking.[projekt]_curated.events`
 GROUP BY user_pseudo_id;
 ```
 
@@ -105,14 +109,14 @@ GROUP BY user_pseudo_id;
 
 ## 🎯 Setup Instructions
 
-### **Steg 1: Skapa GA4 Property (EN property)**
+### **Steg 1: Skapa GA4 Property (EN property per projekt)**
 
 1. Gå till Google Analytics: https://analytics.google.com
 2. Klicka på "Admin" (kugghjul-ikonen)
 3. Välj rätt Analytics-konto (Spitakolus)
 4. Klicka på "+ Skapa egendom" (Create property)
 5. Fyll i:
-   - **Egendomsnamn:** "Flocken"
+   - **Egendomsnamn:** "[Projektnamn]"
    - **Tidszon:** Europe/Stockholm
    - **Valuta:** SEK
 6. Klicka på "Nästa"
@@ -122,34 +126,33 @@ GROUP BY user_pseudo_id;
 **Efter att propertyn är skapad:**
 
 1. **Web Stream:**
-   - Klicka på "Web" (som du ser i bilden)
-   - **Webbplats-URL:** `https://flocken.info`
-   - **Stream-namn:** "Flocken Web"
+   - Klicka på "Web"
+   - **Webbplats-URL:** `https://projektets-domän.com`
+   - **Stream-namn:** "[Projektnamn] Web"
    - Klicka på "Skapa stream"
    - **Spara Measurement ID:** `G-XXXXXXXXXX`
 
-2. **Android App Stream (Steg 2 - kan göras senare):**
+2. **Android App Stream (kan göras senare):**
    - Gå tillbaka till Data Streams
    - Klicka på "Lägg till flöde" → "Android-app"
-   - **Appnamn:** Flocken (eller vad appen heter i Play Store)
-   - **Paketnamn:** `com.bastavan.app` (eller rätt package name)
-   - **Stream-namn:** "Flocken Android"
+   - Fyll i Android app information
+   - **Stream-namn:** "[Projektnamn] Android"
    - Klicka på "Skapa stream"
 
-3. **iOS App Stream (Framtida - när appen är på App Store):**
+3. **iOS App Stream (framtida):**
    - Gå tillbaka till Data Streams
    - Klicka på "Lägg till flöde" → "iOS-app"
    - Fyll i iOS app information
-   - **Stream-namn:** "Flocken iOS"
+   - **Stream-namn:** "[Projektnamn] iOS"
 
 ### **Steg 3: BigQuery Export**
 
 1. Gå till GA4 Property → Admin → BigQuery Linking
-2. Välj GCP Project: `nastahem-tracking` (eller skapa nytt för Flocken)
-3. Välj Location: EU (europe-north1)
+2. Välj GCP Project: `nastahem-tracking` (se [BigQuery Shared Project](./BIGQUERY_SHARED_PROJECT.md))
+3. Välj Location: EU (europe-west1)
 4. Aktivera Daily Export
 5. Aktivera Streaming Export
-6. Destination: `flocken_raw` dataset
+6. Destination: `[projekt]_raw` dataset
 
 **Viktigt:** BigQuery exporten innehåller ALLA streams, separerade via `platform` field.
 
@@ -170,10 +173,10 @@ SELECT
     MIN(CASE WHEN platform = 'web' THEN event_timestamp END),
     HOUR
   ) AS hours_to_app_install
-FROM flocken_curated.events
+FROM `nastahem-tracking.[projekt]_curated.events`
 WHERE user_pseudo_id IN (
   SELECT DISTINCT user_pseudo_id 
-  FROM flocken_curated.events 
+  FROM `nastahem-tracking.[projekt]_curated.events` 
   WHERE platform = 'android'
 )
 GROUP BY user_pseudo_id
@@ -232,10 +235,20 @@ HAVING first_web_visit IS NOT NULL;
 
 ## 🚀 Nästa Steg
 
-1. **Nu:** Skapa EN GA4 Property "Flocken"
-2. **Nu:** Lägg till Web Stream (flocken.info)
+1. **Nu:** Skapa EN GA4 Property för projektet
+2. **Nu:** Lägg till Web Stream (projektets-domän.com)
 3. **Steg 2:** Lägg till Android App Stream
 4. **Framtida:** Lägg till iOS App Stream när appen är på App Store
 
-**Säg till när du har skapat propertyn och fått Measurement ID, så fortsätter jag med GTM-implementationen!**
+**Se projekt-specifik dokumentation för implementation:**
+- [flocken-website/docs/tracking/GA4_SETUP_STATUS.md](https://github.com/tbinho/flocken-website/tree/main/docs/tracking)
+- [nastahem/docs/tracking/](https://github.com/tbinho/nastahem/tree/main/docs/tracking)
+
+---
+
+## 📚 Relaterad dokumentation
+
+- [GTM Shared Container](./GTM_SHARED_CONTAINER.md) - GTM container setup
+- [BigQuery Shared Project](./BIGQUERY_SHARED_PROJECT.md) - BigQuery projekt setup
+- [Google Analytics Evaluation](./GOOGLE_ANALYTICS_EVALUATION.md) - Best practices
 
