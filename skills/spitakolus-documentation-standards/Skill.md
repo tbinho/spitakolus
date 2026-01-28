@@ -1,5 +1,5 @@
 ---
-name: Spitakolus Documentation Standards
+name: spitakolus-documentation-standards
 description: Follow Spitakolus documentation rules. Update dates, avoid duplication, clean outdated files, and maintain consistent structure across all repos.
 dependencies: []
 ---

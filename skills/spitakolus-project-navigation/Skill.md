@@ -1,5 +1,5 @@
 ---
-name: Spitakolus Project Navigation
+name: spitakolus-project-navigation
 description: Navigate Spitakolus repos correctly. Know which repo you're in, follow deployment rules, find documentation, and align work with the AI Growth Loop vision.
 dependencies: []
 ---
