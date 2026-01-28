@@ -44,10 +44,10 @@ spitakolus/
 │   ├── COMPANY_INFO.md
 │   └── CONTACT.md
 │
-├── skills/                       # Claude Skills för AI-assistenter
-│   ├── spitakolus-navigation/    # Repo-navigation + Growth Loop vision
-│   ├── spitakolus-documentation/ # Dokumentationsregler
-│   └── spitakolus-tracking/      # GTM, GA4, BigQuery setup
+├── skills/                                   # Claude Skills för AI-assistenter
+│   ├── Spitakolus Project Navigation/        # Repo-navigation + Growth Loop vision
+│   ├── Spitakolus Documentation Standards/   # Dokumentationsregler
+│   └── Spitakolus Tracking and Analytics/    # GTM, GA4, BigQuery setup
 │
 ├── DOCUMENTATION_RULES.md        # Regler för dokumentation
 └── PRODUCT_SEPARATION_GUIDE.md   # Guide för multi-repo struktur

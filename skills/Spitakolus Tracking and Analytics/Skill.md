@@ -1,5 +1,5 @@
 ---
-name: Spitakolus Tracking & Analytics
+name: Spitakolus Tracking and Analytics
 description: Understand and work with Spitakolus shared tracking infrastructure. GTM containers, GA4 properties, BigQuery datasets, consent mode, and event naming.
 dependencies: []
 ---
