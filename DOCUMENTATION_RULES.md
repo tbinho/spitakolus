@@ -109,7 +109,7 @@ För Nästa Hem-projektet, se [nastahem](https://github.com/tbinho/nastahem).
 
 2. **Uppdatera dokumentet**
    - Behåll struktur och format
-   - Uppdatera datum om relevant
+   - **ALLTID uppdatera "Senast uppdaterad" datum**
    - Lägg till changelog om större ändringar
 
 3. **Uppdatera länkar**
@@ -121,6 +121,40 @@ För Nästa Hem-projektet, se [nastahem](https://github.com/tbinho/nastahem).
    - Läs igenom dokumentationen
    - Kontrollera att instruktioner är korrekta
    - Testa länkar
+
+---
+
+## 🗑️ Rensning och underhåll
+
+### ❌ TA BORT utdaterad dokumentation
+
+**Släng filer som:**
+- ❌ Är äldre än 3 månader utan uppdatering
+- ❌ Refererar till projekt/kod som inte längre finns
+- ❌ Har flera versioner (behåll endast senaste)
+- ❌ Är "cleanup plans" eller "migration plans" som slutförts
+- ❌ Är temporära arbetsdokument
+
+**Arkivera INTE allt - radera det som inte behövs!**
+
+### ⚠️ Undvik duplicering
+
+**ALDRIG:**
+- ❌ Samma information på flera ställen
+- ❌ Projekt-specifik dokumentation i fel repo
+- ❌ Flocken-dokumentation i nastahem (eller vice versa)
+
+**ALLTID:**
+- ✅ En källa för varje typ av information
+- ✅ Länka istället för att duplicera
+- ✅ Flytta/ta bort vid omorganisering
+
+### Underhållsrutin (månatlig)
+
+1. Granska alla filer äldre än 2 månader
+2. Ta bort utdaterade filer
+3. Uppdatera brutna länkar
+4. Verifiera att struktur matchar DOCUMENTATION_MAP.md
 
 ---
 

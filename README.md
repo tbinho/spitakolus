@@ -3,6 +3,8 @@
 **⚠️ VIKTIGT:** Detta är **SPITAKOLUS** repo - delad dokumentation för alla produkter.  
 Detta repo innehåller INTE produktkod - varje produkt har sitt eget repo.
 
+**🤖 AI-assistenter:** Läs [AI_ONBOARDING.md](./AI_ONBOARDING.md) för snabb insättning!
+
 ---
 
 ## 🏢 Spitakolus-produkter
