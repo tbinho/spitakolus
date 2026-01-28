@@ -46,7 +46,8 @@ spitakolus/
 │
 ├── skills/                       # Claude Skills för AI-assistenter
 │   ├── spitakolus-navigation/    # Repo-navigation + Growth Loop vision
-│   └── spitakolus-documentation/ # Dokumentationsregler
+│   ├── spitakolus-documentation/ # Dokumentationsregler
+│   └── spitakolus-tracking/      # GTM, GA4, BigQuery setup
 │
 ├── DOCUMENTATION_RULES.md        # Regler för dokumentation
 └── PRODUCT_SEPARATION_GUIDE.md   # Guide för multi-repo struktur
