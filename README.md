@@ -34,7 +34,8 @@ spitakolus/
 │   ├── TEMPLATES/                # Mallar för nya produkter
 │   │   ├── README_TEMPLATE.md
 │   │   └── DOCUMENTATION_MAP_TEMPLATE.md
-│   └── GIT_WORKFLOW.md
+│   ├── GIT_WORKFLOW.md
+│   └── ASSET_STRUCTURE_STANDARD.md  # Standard för bilder/assets
 │
 ├── company/                      # Företagsinformation
 │   ├── COMPANY_INFO.md

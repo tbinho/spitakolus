@@ -202,8 +202,10 @@ flocken_para_karta.png     ✅ RÄTT
 
 ## 📚 Relaterad dokumentation
 
-- [flocken-website/IMAGE_MANAGEMENT.md](https://github.com/tbinho/flocken-website) - Flocken-specifik bildhantering
-- [PRODUCT_SEPARATION_GUIDE.md](./PRODUCT_SEPARATION_GUIDE.md) - Multi-repo struktur
+- [IMAGE_PROCESSING_SYSTEM.md](./IMAGE_PROCESSING_SYSTEM.md) - Gemensamt bildhanteringssystem
+- [flocken-website/IMAGE_MANAGEMENT.md](https://github.com/tbinho/flocken-website) - Flocken-specifika inställningar
+- [nastahem/IMAGE_MANAGEMENT.md](https://github.com/tbinho/nastahem) - Nästa Hem-specifika inställningar
+- [PRODUCT_SEPARATION_GUIDE.md](../PRODUCT_SEPARATION_GUIDE.md) - Multi-repo struktur
 
 ---
 
