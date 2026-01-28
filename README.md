@@ -35,7 +35,8 @@ spitakolus/
 │   │   ├── README_TEMPLATE.md
 │   │   └── DOCUMENTATION_MAP_TEMPLATE.md
 │   ├── GIT_WORKFLOW.md
-│   └── ASSET_STRUCTURE_STANDARD.md  # Standard för bilder/assets
+│   ├── ASSET_STRUCTURE_STANDARD.md  # Standard för bilder/assets
+│   └── IMAGE_PROCESSING_SYSTEM.md   # Bildhanteringssystem
 │
 ├── company/                      # Företagsinformation
 │   ├── COMPANY_INFO.md
